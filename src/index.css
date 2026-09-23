@@ -1,0 +1,136 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: "Inter", sans-serif;
+}
+
+/* ---------- keyframes ---------- */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes scaleSpring {
+  0% { opacity: 0; transform: scale(0.9) translateY(12px); }
+  60% { opacity: 1; transform: scale(1.02) translateY(-2px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(28px) scale(0.97); }
+  to { opacity: 1; transform: translateX(0) scale(1); }
+}
+@keyframes floatSlow {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(14px, -18px) scale(1.05); }
+}
+@keyframes floatSlow2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-18px, 16px) scale(1.08); }
+}
+@keyframes shimmer {
+  0% { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+@keyframes glowPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(16,185,129,0.35); }
+  50% { box-shadow: 0 0 0 8px rgba(16,185,129,0); }
+}
+@keyframes ringPulse {
+  0% { transform: scale(0.9); opacity: 0.9; }
+  70% { transform: scale(1.9); opacity: 0; }
+  100% { opacity: 0; }
+}
+@keyframes travel {
+  0% { offset-distance: 0%; opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { offset-distance: 100%; opacity: 0; }
+}
+@keyframes bounceIcon {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-3px) rotate(-6deg); }
+}
+@keyframes confettiFall {
+  0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(120px) rotate(540deg); opacity: 0; }
+}
+@keyframes underlineGrow {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+@keyframes flowH {
+  0% { left: -4%; opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { left: 104%; opacity: 0; }
+}
+@keyframes flowV {
+  0% { top: -4%; opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { top: 104%; opacity: 0; }
+}
+@keyframes nodeGlow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(16,185,129,0); }
+  50% { box-shadow: 0 0 14px 2px rgba(16,185,129,0.35); }
+}
+@keyframes shrinkWidth {
+  from { width: 100%; }
+  to { width: 0%; }
+}
+@keyframes wiggle {
+  0%, 100% { transform: rotate(0deg); }
+  20% { transform: rotate(-14deg); }
+  40% { transform: rotate(12deg); }
+  60% { transform: rotate(-8deg); }
+  80% { transform: rotate(6deg); }
+}
+
+/* ---------- utility animation classes ---------- */
+.anim-fade-up { animation: fadeUp 0.5s cubic-bezier(0.22,1,0.36,1) both; }
+.anim-fade-in { animation: fadeIn 0.35s ease-out both; }
+.anim-scale-spring { animation: scaleSpring 0.45s cubic-bezier(0.22,1,0.36,1) both; }
+.anim-slide-right { animation: slideInRight 0.3s cubic-bezier(0.22,1,0.36,1) both; }
+.anim-float-slow { animation: floatSlow 9s ease-in-out infinite; }
+.anim-float-slow2 { animation: floatSlow2 11s ease-in-out infinite; }
+.anim-glow-pulse { animation: glowPulse 2.2s ease-out infinite; }
+.anim-bounce-icon:hover svg { animation: bounceIcon 0.5s ease-in-out; }
+
+.card-interactive {
+  transition: transform 0.25s cubic-bezier(0.22,1,0.36,1), box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.card-interactive:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 32px -12px rgba(6,95,70,0.18);
+}
+
+.btn-press {
+  transition: transform 0.15s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+.btn-press:active {
+  transform: scale(0.96);
+}
+
+.shimmer-bg {
+  background: linear-gradient(90deg, #f5f5f4 25%, #fafaf9 37%, #f5f5f4 63%);
+  background-size: 400px 100%;
+  animation: shimmer 1.4s ease-in-out infinite;
+}
+
+.ring-ping {
+  animation: ringPulse 2s cubic-bezier(0,0,0.2,1) infinite;
+}
+
+.tab-underline {
+  transform-origin: left;
+  animation: underlineGrow 0.3s cubic-bezier(0.22,1,0.36,1) both;
+}
+
+/* staggered children helper: apply inline style `animationDelay` alongside .anim-fade-up */
