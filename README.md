@@ -1,89 +1,29 @@
-# GridShare — Community P2P Renewable Energy Marketplace (Prototype)
+# weekly-lines-tracker
+# Mainline Weekly Lines
 
-A simulated, hackathon/college-project prototype of a community peer-to-peer
-renewable energy marketplace and microgrid dashboard. **No real electricity is
-transferred by this app** — all generation, consumption, pricing and trades
-are simulated.
+A small Git CLI report for tracking lines added to a repository's `main` branch this week.
 
-## Getting started
+## Run
 
-```bash
-npm install
-npm run dev
+From any Git repository, run:
+
+```powershell
+python C:\path\to\mainline-weekly-lines\weekly_lines.py
 ```
 
-Then open the local URL Vite prints (usually http://localhost:5173).
+Choose a branch or week start explicitly:
 
-To create a production build:
-
-```bash
-npm run build
-npm run preview
+```powershell
+python weekly_lines.py --repo C:\src\my-project --branch main --since 2026-09-21
 ```
 
-## Project structure
+The default week starts Monday (local time). Added and removed line counts come from Git's per-commit numstat. Merge commits are excluded to avoid counting merged diffs twice. Binary changes are ignored. This is a local estimate; the competition site may use its own rules and refresh schedule.
 
-```
-src/
-  main.jsx              # React entry point
-  App.jsx                # Top-level app state, routing between pages/modals
-  index.css               # Tailwind directives + font imports
-  data/
-    mockData.js            # Simulated houses, listings, chart data, source mix
-    nav.js                  # Sidebar / bottom-nav item config
-  utils/
-    format.js                # Number/currency/time formatting helpers
-  components/               # Reusable building blocks (cards, modals, nav, etc.)
-    Landing.jsx
-    Login.jsx
-    Sidebar.jsx
-    BottomNav.jsx
-    TopBar.jsx
-    FlowDiagram.jsx
-    KpiCard.jsx
-    LiveStatusCard.jsx
-    GenerationChart.jsx
-    MyEnergyCard.jsx
-    Recommendations.jsx
-    Modal.jsx
-    SellModal.jsx
-    BuyModal.jsx
-    HouseModal.jsx
-    CommunityMap.jsx
-    Leaderboard.jsx
-    ToastStack.jsx
-    StatusDot.jsx
-    SourceTag.jsx
-  pages/                    # One file per main navigation screen
-    DashboardPage.jsx
-    MarketPage.jsx
-    MyEnergyPage.jsx
-    TransactionsPage.jsx
-    CommunityPage.jsx
-    ImpactPage.jsx
-    ProfilePage.jsx
-    AdminPage.jsx
-```
+## What it reports
 
-## What actually works
+- Added and removed lines over the selected period
+- Commits and files touched
+- Added lines by file, to show where meaningful work landed
+- JSON output for saving a history or piping into other tools
 
-- **Sell surplus energy** → creates a real marketplace listing, reduces your
-  available surplus, shows a toast + notification.
-- **Buy energy** → reduces the seller's listing, records a transaction,
-  updates your balance, shows a success toast.
-- **Marketplace filters** (price / availability / distance / source / search)
-  actually filter the listing list.
-- **Transactions** page reflects every buy/sell immediately, with running
-  totals.
-- **Community map** — click any house to see its live generation/consumption/
-  surplus in a modal.
-- **Notifications** — bell icon shows unread count; clicking a notification
-  marks it read.
-- **Live microgrid status** card ticks every ~4 seconds with small simulated
-  fluctuations.
-- Fully responsive: sidebar nav on desktop, bottom nav on mobile.
-
-## Tech stack
-
-React 18 + Vite, Tailwind CSS, Recharts, lucide-react. All data lives in
-React state (see `src/data/mockData.js`) — no backend required.
+To appear on a connected leaderboard, the repository must be the one linked to your competition profile, and the work must reach its tracked branch during the scoring period.
